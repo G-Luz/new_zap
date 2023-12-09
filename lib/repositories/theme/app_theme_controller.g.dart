@@ -25,6 +25,14 @@ mixin _$AppThemeController on AppThemeControllerBase, Store {
     });
   }
 
+  late final _$retrieveUserThemeAsyncAction =
+      AsyncAction('AppThemeControllerBase.retrieveUserTheme', context: context);
+
+  @override
+  Future retrieveUserTheme() {
+    return _$retrieveUserThemeAsyncAction.run(() => super.retrieveUserTheme());
+  }
+
   late final _$AppThemeControllerBaseActionController =
       ActionController(name: 'AppThemeControllerBase', context: context);
 

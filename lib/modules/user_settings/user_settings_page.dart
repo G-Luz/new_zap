@@ -13,6 +13,9 @@ import 'package:new_zap/widgets/app_text.dart';
 import 'package:new_zap/widgets/app_textfield.dart';
 import 'package:rive/rive.dart';
 
+///TODO: QUANDOL VOLTAR:
+///
+///BLOQUEAR/DESBLOQ CTT
 ///TAMBEM TEM QUE FINALIZAR O CHAT
 
 class UserSettingsPage extends StatefulWidget {
@@ -25,7 +28,6 @@ class UserSettingsPage extends StatefulWidget {
 class _UserSettingsPageState extends State<UserSettingsPage> {
   final controller = Modular.get<UserSettingsController>();
 
-  // late SMITrigger lightMode;
   late SMIBool darkMode;
 
   StateMachineController getRiveController(Artboard artboard) {
@@ -50,8 +52,11 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
     return Observer(
       builder: (context) {
         return Scaffold(
+          backgroundColor: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.darkBlue
+              : AppColors.darkWhite,
           appBar: AppBar(
-            backgroundColor: AppColors.darkBlue,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             title: const AppText(
               text: 'Minhas configurações',
               fontSize: 18,
@@ -104,6 +109,8 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                         setState(() {
                           darkMode.value = !darkMode.value;
                         });
+
+                        controller.changeTheme();
                       },
                       child: SizedBox(
                         height: 40,
@@ -115,6 +122,10 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                                 getRiveController(artboard);
                             darkMode =
                                 controller.findSMI('Dark Theme') as SMIBool;
+
+                            setState(() {
+                              darkMode.value = this.controller.theme.isDarkTheme;
+                            });
                           },
                         ),
                       ),

@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:new_zap/constants/app_collection.dart';
 import 'package:new_zap/models/user/user.dart';
 import 'package:new_zap/modules/user_settings/repository/user_settings_repository.dart';
 import 'package:new_zap/repositories/current_user/current_user_controller.dart';
+import 'package:new_zap/repositories/local_storage/local_storage_controller.dart';
+import 'package:new_zap/repositories/theme/app_theme_controller.dart';
 
 part 'user_settings_controller.g.dart';
 
@@ -15,7 +18,9 @@ class UserSettingsController = UserSettingsControllerBase
 
 abstract class UserSettingsControllerBase with Store {
   final currentUserController = Modular.get<CurrentUserController>();
+  final localStorageController = Modular.get<LocalStorageController>();
   final _repository = Modular.get<UserSettingsRepository>();
+  final theme = Modular.get<AppThemeController>();
 
   @observable
   File? selectedImage;
@@ -78,5 +83,14 @@ abstract class UserSettingsControllerBase with Store {
 
       userSettingsStatus = UserSettingsStatus.success;
     }
+  }
+
+  @action
+  changeTheme() {
+    theme.changeTheme();
+    localStorageController.setBoolValue(
+      AppCollections.themeKey,
+      theme.isDarkTheme ? true : false,
+    );
   }
 }

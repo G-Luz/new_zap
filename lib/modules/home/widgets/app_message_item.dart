@@ -23,15 +23,23 @@ class AppMessageItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText(
-                    text: 'Contact name',
-                    fontColor: Colors.black,
-                    fontSize: 18,
+                  // AppText(
+                  //   text: 'Contact name',
+                  //   fontColor: Colors.black,
+                  //   fontSize: 18,
+                  // ),
+                  // AppText(
+                  //   text: 'Message',
+                  //   fontColor: Colors.black,
+                  //   fontSize: 13,
+                  // ),
+                  Text(
+                    'Contact name',
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  AppText(
-                    text: 'Message',
-                    fontColor: Colors.black,
-                    fontSize: 13,
+                  Text(
+                    'Message',
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),
@@ -45,11 +53,12 @@ class AppMessageItem extends StatelessWidget {
                 fontColor: Colors.black,
                 fontSize: 13,
               ),
+              const SizedBox(height: 5),
               Container(
                 width: 25,
                 height: 18,
                 decoration: BoxDecoration(
-                  color: AppColors.blue.withOpacity(.8),
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(50),
                   ),
@@ -57,7 +66,8 @@ class AppMessageItem extends StatelessWidget {
                 child: Center(
                   child: AppText(
                     text: '5',
-                    fontSize: 10,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),

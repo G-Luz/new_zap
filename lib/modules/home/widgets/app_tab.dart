@@ -18,16 +18,15 @@ class AppTab extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppText(
-            text: tabTitle,
-            fontColor: AppColors.darkBlue,
+          Text(
+            tabTitle,
           ),
           const SizedBox(width: 10),
           Container(
             width: 25,
             height: 18,
             decoration: BoxDecoration(
-              color: AppColors.darkBlue.withOpacity(.8),
+              color: Theme.of(context).colorScheme.primary.withOpacity(.8),
               borderRadius: const BorderRadius.all(
                 Radius.circular(50),
               ),

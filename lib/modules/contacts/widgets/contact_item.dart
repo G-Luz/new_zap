@@ -52,19 +52,16 @@ class ContactItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppText(
-                  text: isMyCurrentUser
-                      ? '${user.name} (Meu contato)'
-                      : user.name,
-                  fontColor: AppColors.darkBlue,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
+                Text(
+                  isMyCurrentUser ? '${user.name} (Meu contato)' : user.name,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  // fontColor: AppColors.darkBlue,
+                  // fontSize: 16,
+                  // fontWeight: FontWeight.w700,
                 ),
-                AppText(
-                  text: user.lastEntrance?.toString() ??
-                      'Login ainda não efetuado.',
-                  fontColor: AppColors.darkBlue,
-                  fontSize: 14,
+                Text(
+                  user.lastEntrance?.toString() ?? 'Login ainda não efetuado.',
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),

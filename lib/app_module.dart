@@ -7,6 +7,7 @@ import 'package:new_zap/modules/internet_image/internet_image_module.dart';
 import 'package:new_zap/modules/user_settings/user_settings_module.dart';
 import 'package:new_zap/modules/welcome/welcome_module.dart';
 import 'package:new_zap/repositories/current_user/current_user_controller.dart';
+import 'package:new_zap/repositories/local_storage/local_storage_controller.dart';
 import 'package:new_zap/repositories/theme/app_theme_controller.dart';
 
 class AppModule extends Module {
@@ -14,6 +15,7 @@ class AppModule extends Module {
   List<Bind<Object>> get binds => [
         Bind.lazySingleton((i) => CurrentUserController()),
         Bind.singleton((i) => AppThemeController()),
+        Bind.singleton((i) => LocalStorageController()),
       ];
 
   @override

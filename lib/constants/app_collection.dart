@@ -4,4 +4,7 @@ class AppCollections {
   static const usersCollection = 'users';
   
   static const userDataArgumentKey = 'authUser';
+
+  static const themeKey = 'themeKey';
+
 }

@@ -147,6 +147,17 @@ mixin _$UserSettingsController on UserSettingsControllerBase, Store {
   }
 
   @override
+  dynamic changeTheme() {
+    final _$actionInfo = _$UserSettingsControllerBaseActionController
+        .startAction(name: 'UserSettingsControllerBase.changeTheme');
+    try {
+      return super.changeTheme();
+    } finally {
+      _$UserSettingsControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 selectedImage: ${selectedImage},

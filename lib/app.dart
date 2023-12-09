@@ -15,17 +15,13 @@ class App extends StatelessWidget {
     Modular.setInitialRoute(Routes.initialRoute);
     return Observer(
       builder: (context) {
+        themeController.retrieveUserTheme();
+
         return MaterialApp.router(
           title: 'New Zap Go',
           theme: themeController.isDarkTheme
               ? AppTheme.darkThemeData
               : AppTheme.lightThemeData,
-
-          // theme: ThemeData(
-          //   // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-
-          //   useMaterial3: true,
-          // ),
           routerDelegate: Modular.routerDelegate,
           routeInformationParser: Modular.routeInformationParser,
         );

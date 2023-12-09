@@ -45,103 +45,99 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return SafeArea(
-      child: Observer(
-        builder: (context) {
-          return Scaffold(
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(deviceSize.height * .15),
-              child: Padding(
-                padding: EdgeInsets.all(25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(deviceSize.height * .15),
+          child: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'New ZapGo',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                Row(
                   children: [
-                    Text('New ZapGo'),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.search_outlined,
-                          color: AppColors.darkWhite,
-                          size: 30,
-                        ),
-                        const SizedBox(width: 20),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.settings_outlined,
-                            color: AppColors.darkWhite,
-                            size: 30,
-                          ),
-                          onPressed: () => Modular.to
-                              .pushNamed(Routes.userSettingsModuleRoute),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-            floatingActionButton: FloatingActionButton.extended(
-              backgroundColor: AppColors.darkBlue,
-              label: const Icon(
-                Icons.chat,
-                color: AppColors.darkWhite,
-              ),
-              // onPressed: () => Modular.to.pushNamed(Routes.contactsModuleRoute),
-              onPressed: () => controller.theme.changeTheme(),
-            ),
-            body: Container(
-              height: deviceSize.height - (deviceSize.height * .05),
-              decoration: BoxDecoration(
-                // color: AppColors.darkWhite,
-                color: Theme.of(context).colorScheme.background,
-
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(.2),
-                    spreadRadius: 7,
-                    blurRadius: 10,
-                    offset: Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  TabBar(
-                    controller: tabController,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: Colors.indigo[900],
-                    tabs: const [
-                      AppTab(tabTitle: 'Todas', tabBadge: '10'),
-                      AppTab(tabTitle: 'Lidas', tabBadge: '2'),
-                      AppTab(tabTitle: 'Não lidas', tabBadge: '8'),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Expanded(
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      separatorBuilder: (context, index) => Container(
-                        margin: EdgeInsets.symmetric(horizontal: 30),
-                        child: Divider(
-                          color: Colors.grey.withOpacity(.2),
-                          thickness: 1,
-                        ),
-                      ),
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return AppMessageItem();
-                      },
+                    const Icon(
+                      Icons.search_outlined,
+                      color: AppColors.darkWhite,
+                      size: 30,
                     ),
-                  )
+                    const SizedBox(width: 20),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.settings_outlined,
+                        color: AppColors.darkWhite,
+                        size: 30,
+                      ),
+                      onPressed: () =>
+                          Modular.to.pushNamed(Routes.userSettingsModuleRoute),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          label: const Icon(
+            Icons.chat,
+            color: AppColors.darkWhite,
+          ),
+          onPressed: () => Modular.to.pushNamed(Routes.contactsModuleRoute),
+          // onPressed: () => controller.theme.changeTheme(),
+        ),
+        body: Container(
+          height: deviceSize.height - (deviceSize.height * .05),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(40),
+              topRight: Radius.circular(40),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.secondBlue.withOpacity(.7),
+                spreadRadius: 10,
+                blurRadius: 20,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              TabBar(
+                controller: tabController,
+                indicatorColor: Theme.of(context).colorScheme.primary,
+                tabs: const [
+                  AppTab(tabTitle: 'Todas', tabBadge: '10'),
+                  AppTab(tabTitle: 'Lidas', tabBadge: '2'),
+                  AppTab(tabTitle: 'Não lidas', tabBadge: '8'),
                 ],
               ),
-            ),
-          );
-        },
+              const SizedBox(height: 10),
+              Expanded(
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  separatorBuilder: (context, index) => Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Divider(
+                      color: Colors.grey.withOpacity(.2),
+                      thickness: 1,
+                    ),
+                  ),
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return AppMessageItem();
+                  },
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

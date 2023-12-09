@@ -30,6 +30,9 @@ class _ContactsPageState extends State<ContactsPage> {
     return Observer(
       builder: (context) {
         return Scaffold(
+          backgroundColor: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.darkBlue
+              : AppColors.darkWhite,
           appBar: AppBar(
             backgroundColor: AppColors.darkBlue,
             title: controller.isSearchContact

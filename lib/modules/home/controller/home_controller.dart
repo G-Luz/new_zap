@@ -10,5 +10,4 @@ class HomeController = HomeControllerBase with _$HomeController;
 abstract class HomeControllerBase with Store {
   final currentUser = Modular.get<CurrentUserController>();
 
-  final theme = Modular.get<AppThemeController>();
 }

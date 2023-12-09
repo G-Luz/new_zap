@@ -42,6 +42,7 @@ class AppTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       child: TextFormField(
         controller: controller,
         initialValue: initialValue,
