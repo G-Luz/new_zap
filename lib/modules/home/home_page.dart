@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:new_zap/constants/app_collection.dart';
 import 'package:new_zap/constants/app_colors.dart';
@@ -8,7 +7,6 @@ import 'package:new_zap/constants/routes.dart';
 import 'package:new_zap/modules/home/controller/home_controller.dart';
 import 'package:new_zap/modules/home/widgets/app_message_item.dart';
 import 'package:new_zap/modules/home/widgets/app_tab.dart';
-import 'package:new_zap/widgets/app_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

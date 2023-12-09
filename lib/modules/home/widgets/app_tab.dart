@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_zap/constants/app_colors.dart';
 import 'package:new_zap/widgets/app_text.dart';
 
 class AppTab extends StatelessWidget {

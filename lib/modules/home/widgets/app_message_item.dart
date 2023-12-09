@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_zap/constants/app_colors.dart';
 import 'package:new_zap/widgets/app_text.dart';
 
 class AppMessageItem extends StatelessWidget {
@@ -48,10 +47,9 @@ class AppMessageItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AppText(
-                text: '18:30',
-                fontColor: Colors.black,
-                fontSize: 13,
+              Text(
+                '18:30',
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 5),
               Container(

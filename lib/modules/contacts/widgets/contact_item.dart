@@ -3,7 +3,6 @@ import 'package:new_zap/constants/app_colors.dart';
 import 'package:new_zap/constants/app_images.dart';
 import 'package:new_zap/models/user/user.dart';
 import 'package:new_zap/modules/contacts/controller/contacts_controller.dart';
-import 'package:new_zap/widgets/app_text.dart';
 import 'package:new_zap/widgets/toast.dart';
 
 class ContactItem extends StatelessWidget {
