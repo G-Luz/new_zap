@@ -145,7 +145,16 @@ class Message extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 7, top: 5),
           decoration: BoxDecoration(
             color: isFromMe ? AppColors.darkBlue2 : AppColors.blue,
-            borderRadius: BorderRadius.circular(13),
+            borderRadius: BorderRadius.only(
+              bottomLeft: const Radius.circular(13),
+              bottomRight: const Radius.circular(13),
+              topLeft: isFromMe
+                  ? const Radius.circular(13)
+                  : const Radius.circular(0),
+              topRight: isFromMe
+                  ? const Radius.circular(0)
+                  : const Radius.circular(13),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

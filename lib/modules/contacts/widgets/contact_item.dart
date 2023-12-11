@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:new_zap/constants/app_colors.dart';
 import 'package:new_zap/constants/app_images.dart';
+import 'package:new_zap/constants/routes.dart';
 import 'package:new_zap/models/user/user.dart';
 import 'package:new_zap/modules/contacts/controller/contacts_controller.dart';
 import 'package:new_zap/widgets/toast.dart';
@@ -26,7 +28,21 @@ class ContactItem extends StatelessWidget {
           ? () {
               showToast('Não é possível selecionar o próprio contato.');
             }
-          : () {},
+          : () async {
+              if (user.documentId != null) {
+                final chatRef = await contactsController.createChatWithUsers(
+                  selectedContactDocumentId: user.documentId!,
+                );
+
+                Modular.to.pushNamed(
+                  Routes.chatModuleRoute,
+                  arguments: {'chatRef': chatRef},
+                );
+              } else {
+                showToast(
+                    'Não foi possível criar a conversa com este contato.');
+              }
+            },
       child: Container(
         padding: const EdgeInsets.symmetric(
           vertical: 12,

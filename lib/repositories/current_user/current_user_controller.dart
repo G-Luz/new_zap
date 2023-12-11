@@ -10,7 +10,7 @@ class CurrentUserController = CurrentUserControllerBase
     with _$CurrentUserController;
 
 abstract class CurrentUserControllerBase with Store {
-  final userCollectionRef = FirebaseFirestore.instance
+  final _userCollectionRef = FirebaseFirestore.instance
       .collection(AppCollections.dummyCollection)
       .doc(AppCollections.appCollection)
       .collection(AppCollections.usersCollection);
@@ -20,7 +20,7 @@ abstract class CurrentUserControllerBase with Store {
 
   @action
   defineCurrentUser(auth.User authUser) async {
-    final user = await userCollectionRef
+    final user = await _userCollectionRef
         .where('email', isEqualTo: authUser.email)
         .limit(1)
         .get();

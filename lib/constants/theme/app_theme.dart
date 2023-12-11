@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:new_zap/constants/app_colors.dart';
 
 class AppTheme {
-  static ColorScheme colorSchemeDark = const ColorScheme(
+  static ColorScheme colorSchemeDark = ColorScheme(
     brightness: Brightness.dark,
     background: AppColors.secondBlue,
-    primary: AppColors.darkBlue,
+    primary: AppColors.darkBlue.withOpacity(.8),
     secondary: Colors.teal,
     surface: Colors.black,
     error: Colors.teal,
