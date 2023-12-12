@@ -13,11 +13,6 @@ import 'package:new_zap/widgets/app_text.dart';
 import 'package:new_zap/widgets/app_textfield.dart';
 import 'package:rive/rive.dart';
 
-///TODO: QUANDOL VOLTAR:
-///
-///BLOQUEAR/DESBLOQ CTT
-///TAMBEM TEM QUE FINALIZAR O CHAT
-
 class UserSettingsPage extends StatefulWidget {
   const UserSettingsPage({Key? key}) : super(key: key);
 

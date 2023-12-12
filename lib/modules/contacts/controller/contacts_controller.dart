@@ -43,7 +43,7 @@ abstract class ContactsControllerBase with Store {
     status = ContactsStatus.success;
   }
 
-  Future<String?> createChatWithUsers({
+  Future<Chat?> createChatWithUsers({
     required String selectedContactDocumentId,
   }) async {
     final currentUserIsFirstInChat = await chatsColletion
@@ -87,7 +87,6 @@ abstract class ContactsControllerBase with Store {
     if (currentUserIsSecondInChat.docs.isNotEmpty) {
       for (final chatDocs in currentUserIsSecondInChat.docs) {
         final chat = Chat.fromJson(chatDocs.data());
-
         final result = await retrieveChatRef(
           chat: chat,
           selectedContactDocId: selectedContactDocumentId,
@@ -95,7 +94,7 @@ abstract class ContactsControllerBase with Store {
         if (result != null) {
           return result;
         } else {
-          return '';
+          return null;
         }
       }
     }
@@ -107,10 +106,10 @@ abstract class ContactsControllerBase with Store {
         selectedContactDocumentId: selectedContactDocumentId,
       );
     }
-    return '';
+    return null;
   }
 
-  Future<String?> retrieveChatRef({
+  Future<Chat?> retrieveChatRef({
     required Chat chat,
     required String selectedContactDocId,
   }) async {
@@ -119,7 +118,7 @@ abstract class ContactsControllerBase with Store {
           chat.ndDocumentId == currentUserController.currentUser!.documentId &&
               chat.stDocumentId == selectedContactDocId;
       if (existChatBetweenSelectedUsers) {
-        return chat.documentId!;
+        return chat;
       }
     }
 
@@ -129,7 +128,7 @@ abstract class ContactsControllerBase with Store {
               chat.ndDocumentId == selectedContactDocId;
 
       if (existChatBetweenSelectedUsers) {
-        return chat.documentId!;
+        return chat;
       } else {
         return await createNewChat(
           user: currentUserController.currentUser!,
@@ -140,7 +139,7 @@ abstract class ContactsControllerBase with Store {
     return null;
   }
 
-  Future<String> createNewChat({
+  Future<Chat> createNewChat({
     required User user,
     required String selectedContactDocumentId,
   }) async {
@@ -155,6 +154,6 @@ abstract class ContactsControllerBase with Store {
 
     chat = chat.copyWith(documentId: chatRef.id);
     await chatsColletion.doc(chatRef.id).update(chat.toJson());
-    return chatRef.id;
+    return chat;
   }
 }

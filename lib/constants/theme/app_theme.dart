@@ -6,7 +6,7 @@ class AppTheme {
     brightness: Brightness.dark,
     background: AppColors.secondBlue,
     primary: AppColors.darkBlue.withOpacity(.8),
-    secondary: Colors.teal,
+    secondary: AppColors.yellow,
     surface: Colors.black,
     error: Colors.teal,
     onBackground: Colors.teal,
@@ -20,7 +20,7 @@ class AppTheme {
     brightness: Brightness.light,
     background: AppColors.darkWhite,
     primary: AppColors.blue,
-    secondary: Colors.teal,
+    secondary: AppColors.yellow,
     surface: Colors.pink,
     error: Colors.green,
     onBackground: Colors.lightGreenAccent,
@@ -33,6 +33,9 @@ class AppTheme {
   static ThemeData darkThemeData = ThemeData(
     colorScheme: colorSchemeDark,
     scaffoldBackgroundColor: AppColors.darkBlue,
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Colors.transparent,
+    ),
     textTheme: const TextTheme(
       bodySmall: TextStyle(
         color: AppColors.darkWhite,
@@ -62,6 +65,9 @@ class AppTheme {
   static final ThemeData lightThemeData = ThemeData(
     colorScheme: colorSchemeLight,
     scaffoldBackgroundColor: AppColors.darkBlue,
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Colors.transparent,
+    ),
     textTheme: const TextTheme(
       bodySmall: TextStyle(
         color: AppColors.darkBlue,

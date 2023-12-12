@@ -74,6 +74,13 @@ class AppTextfield extends StatelessWidget {
               color: borderColor,
             ),
           ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: borderColor,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
           suffixIcon: suffixIcon,
           prefixIcon: preffixIcon,
         ),

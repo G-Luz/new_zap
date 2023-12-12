@@ -7,7 +7,7 @@ class Message {
   String? documentId;
   String? content;
   String? sendyByUserDocumentId;
-  String? sendDate;
+  DateTime? sendDate;
   bool? viewed;
 
   Message({

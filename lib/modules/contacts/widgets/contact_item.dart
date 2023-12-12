@@ -30,13 +30,13 @@ class ContactItem extends StatelessWidget {
             }
           : () async {
               if (user.documentId != null) {
-                final chatRef = await contactsController.createChatWithUsers(
+                final chat = await contactsController.createChatWithUsers(
                   selectedContactDocumentId: user.documentId!,
                 );
 
                 Modular.to.pushNamed(
                   Routes.chatModuleRoute,
-                  arguments: {'chatRef': chatRef},
+                  arguments: {'chat': chat},
                 );
               } else {
                 showToast(

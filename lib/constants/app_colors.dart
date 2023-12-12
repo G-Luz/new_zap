@@ -9,4 +9,5 @@ class AppColors {
   static const Color darkBlue2 = Color(0xff4B00A0);
 
   static const Color secondBlue = Color(0xff32529d);
+  static const Color yellow = Color(0xffFFAE11);
 }
