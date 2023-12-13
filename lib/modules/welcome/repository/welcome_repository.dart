@@ -16,8 +16,9 @@ abstract class WelcomeRepositoryBase with Store {
 
   Future<dynamic> userSignin(String email, String password) async {
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
-      return null;
+      final authResult = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return authResult;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'user-not-found':

@@ -163,39 +163,39 @@ class _ChatPageState extends State<ChatPage> {
                 ),
               ),
               child: StreamBuilder<QuerySnapshot>(
-                  stream: controller.messagesStream,
-                  builder: (context, snapshot) {
-                    if (snapshot.data == null) {
-                      return const EmptyMessageList();
-                    }
+                stream: controller.messagesStream,
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) {
+                    return const EmptyMessageList();
+                  }
 
-                    if (snapshot.data!.docs.isEmpty) {
-                      return const EmptyMessageList();
-                    }
+                  if (snapshot.data!.docs.isEmpty) {
+                    return const EmptyMessageList();
+                  }
 
-                    return ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      reverse: true,
-                      itemCount: snapshot.data != null
-                          ? snapshot.data!.docs.length
-                          : 0,
-                      itemBuilder: (context, index) {
-                        if (snapshot.data != null) {
-                          DocumentSnapshot doc = snapshot.data!.docs[index];
-                          final message = model.Message.fromJson(
-                              doc.data()! as Map<String, dynamic>);
+                  return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    shrinkWrap: true,
+                    reverse: true,
+                    itemCount:
+                        snapshot.data != null ? snapshot.data!.docs.length : 0,
+                    itemBuilder: (context, index) {
+                      if (snapshot.data != null) {
+                        DocumentSnapshot doc = snapshot.data!.docs[index];
+                        final message = model.Message.fromJson(
+                            doc.data()! as Map<String, dynamic>);
 
-                          return Message(
-                            message: message,
-                            currentUser:
-                                controller.currentUserController.currentUser!,
-                          );
-                        }
-                        return const SizedBox();
-                      },
-                    );
-                  }),
+                        return Message(
+                          message: message,
+                          currentUser:
+                              controller.currentUserController.currentUser!,
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  );
+                },
+              ),
             ),
           ),
         );
@@ -227,9 +227,9 @@ class Message extends StatelessWidget {
             isFromMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           Container(
-            width: deviceSize.width * .4,
-            height: deviceSize.height * .06,
-            padding: const EdgeInsets.only(left: 10, right: 7, top: 5),
+            width: deviceSize.width * .6,
+            // height: deviceSize.height * .06,
+            padding: const EdgeInsets.only(left: 10, right: 7, top: 10, bottom: 10),
             decoration: BoxDecoration(
               color: isFromMe ? AppColors.darkBlue2 : AppColors.blue,
               borderRadius: BorderRadius.only(
@@ -250,6 +250,7 @@ class Message extends StatelessWidget {
                   text: message.content!,
                   fontColor: AppColors.darkWhite,
                 ),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

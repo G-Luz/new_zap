@@ -137,7 +137,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                         child: CircleAvatar(
                           backgroundImage: buildProfileImageWidget(
                                 controller.currentUserController.currentUser!
-                                    .profileUrlImage!,
+                                    .profileUrlImage,
                                 controller.selectedImage?.path,
                               ) ??
                               const AssetImage(AppImages.icUser),

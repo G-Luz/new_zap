@@ -66,7 +66,6 @@ abstract class ChatControllerBase with Store {
 
   @action
   sendNewMessage() async {
-    print('parece que n clica porra');
     if (textMessageController.text.isNotEmpty) {
       await _repository.sendMessage(
         chatRef: chat!.documentId!,
