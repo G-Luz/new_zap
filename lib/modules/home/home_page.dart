@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
@@ -84,8 +85,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Icons.chat,
             color: AppColors.darkWhite,
           ),
-          onPressed: () => Modular.to.pushNamed(Routes.contactsModuleRoute),
-          // onPressed: () => controller.theme.changeTheme(),
+          // onPressed: () => Modular.to.pushNamed(Routes.contactsModuleRoute),
+          onPressed: () => controller.retrieveCurrentUsersChat(),
         ),
         body: Container(
           height: deviceSize.height - (deviceSize.height * .05),

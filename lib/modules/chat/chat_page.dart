@@ -12,7 +12,6 @@ import 'package:new_zap/modules/chat/widgets/empty_message_list.dart';
 import 'package:new_zap/utils/date_utils.dart';
 import 'package:new_zap/widgets/app_text.dart';
 import 'package:new_zap/widgets/app_textfield.dart';
-import 'package:new_zap/utils/string_utils.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -229,7 +228,8 @@ class Message extends StatelessWidget {
           Container(
             width: deviceSize.width * .6,
             // height: deviceSize.height * .06,
-            padding: const EdgeInsets.only(left: 10, right: 7, top: 10, bottom: 10),
+            padding:
+                const EdgeInsets.only(left: 10, right: 7, top: 10, bottom: 10),
             decoration: BoxDecoration(
               color: isFromMe ? AppColors.darkBlue2 : AppColors.blue,
               borderRadius: BorderRadius.only(

@@ -8,22 +8,20 @@ Future<void> showBlockedDialogContact(BuildContext context) async {
 
   showModalBottomSheet(
     context: context,
+    backgroundColor: Theme.of(context).colorScheme.background,
     builder: (context) => Container(
       height: deviceSize.height * .7,
       width: deviceSize.width,
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           Container(
             height: 5,
             width: deviceSize.width * .3,
-            margin:const EdgeInsets.symmetric(vertical: 10),
+            margin: const EdgeInsets.symmetric(vertical: 10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              color: Colors.grey
-            ),
+                borderRadius: BorderRadius.circular(30), color: Colors.grey),
           ),
-          
           Container(
             child: Expanded(
               child: ListView.builder(

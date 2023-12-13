@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 import 'package:new_zap/constants/app_collection.dart';
-import 'package:new_zap/models/chat/chat.dart';
 import 'package:new_zap/models/chat/message/message.dart';
 import 'package:new_zap/models/user/user.dart';
 
