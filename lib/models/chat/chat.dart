@@ -10,7 +10,7 @@ class Chat {
   final bool? blocked;
   final String? stDocumentId;
   final String? ndDocumentId;
-  final String? messageDocumentId;
+  final DateTime? lastMessageSent;
 
   Chat({
     this.documentId,
@@ -19,7 +19,7 @@ class Chat {
     this.blocked,
     this.stDocumentId,
     this.ndDocumentId,
-    this.messageDocumentId,
+    this.lastMessageSent,
   });
 
   Chat copyWith({
@@ -29,7 +29,7 @@ class Chat {
     bool? blocked,
     String? stDocumentId,
     String? ndDocumentId,
-    String? messageDocumentId,
+    DateTime? lastMessageSent,
   }) {
     return Chat(
       documentId: documentId ?? this.documentId,
@@ -38,7 +38,7 @@ class Chat {
       blocked: blocked ?? this.blocked,
       stDocumentId: stDocumentId ?? this.stDocumentId,
       ndDocumentId: ndDocumentId ?? this.ndDocumentId,
-      messageDocumentId: messageDocumentId ?? this.messageDocumentId,
+      lastMessageSent: lastMessageSent ?? this.lastMessageSent,
     );
   }
 

@@ -13,7 +13,9 @@ Chat _$ChatFromJson(Map<String, dynamic> json) => Chat(
       blocked: json['blocked'] as bool?,
       stDocumentId: json['stDocumentId'] as String?,
       ndDocumentId: json['ndDocumentId'] as String?,
-      messageDocumentId: json['messageDocumentId'] as String?,
+      lastMessageSent: json['lastMessageSent'] == null
+          ? null
+          : DateTime.parse(json['lastMessageSent'] as String),
     );
 
 Map<String, dynamic> _$ChatToJson(Chat instance) => <String, dynamic>{
@@ -23,5 +25,5 @@ Map<String, dynamic> _$ChatToJson(Chat instance) => <String, dynamic>{
       'blocked': instance.blocked,
       'stDocumentId': instance.stDocumentId,
       'ndDocumentId': instance.ndDocumentId,
-      'messageDocumentId': instance.messageDocumentId,
+      'lastMessageSent': instance.lastMessageSent?.toIso8601String(),
     };

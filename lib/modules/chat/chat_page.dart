@@ -52,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               title: AppText(
                 text: controller.status == ChatStatus.loading
-                    ? 'ainda n'
+                    ? ''
                     : controller.recipientUser!.name,
                 fontSize: 17,
               ),
@@ -63,7 +63,7 @@ class _ChatPageState extends State<ChatPage> {
                 icon: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
+                    const Icon(
                       CupertinoIcons.arrow_left,
                       color: AppColors.darkWhite,
                       size: 20,
@@ -87,21 +87,16 @@ class _ChatPageState extends State<ChatPage> {
                 onPressed: () => Modular.to.pop(),
               ),
               actions: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.search,
-                    color: AppColors.darkWhite,
-                  ),
-                  highlightColor: Colors.grey.withOpacity(.2),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.more_vert,
-                    color: AppColors.darkWhite,
-                  ),
-                  highlightColor: Colors.grey.withOpacity(.2),
-                  onPressed: () {},
+                PopupMenuButton<String>(
+                  onSelected: (value) {},
+                  itemBuilder: (BuildContext context) {
+                    return [
+                      PopupMenuItem(child: Text('1')),
+                      PopupMenuItem(child: Text('2')),
+                      PopupMenuItem(child: Text('3')),
+                      PopupMenuItem(child: Text('4')),
+                    ];
+                  },
                 ),
               ],
             ),
@@ -138,11 +133,6 @@ class _ChatPageState extends State<ChatPage> {
                 ],
               ),
             ),
-
-            /// TODO: QUANDO VOLTAR AMANHÃ: TESTAR O CHAT COM DUAS ENTIDADES
-            /// BLOQUEAR/DEBLOQ CTT
-            /// TROCAR PAPEL DE PAREDE
-            /// LISTAR CONVERSAS (NAO LIDAS, LIDAS E TODAS)
 
             body: Container(
               height: deviceSize.height,

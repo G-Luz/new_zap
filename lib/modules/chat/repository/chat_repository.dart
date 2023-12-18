@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobx/mobx.dart';
 import 'package:new_zap/constants/app_collection.dart';
+import 'package:new_zap/models/chat/chat.dart';
 import 'package:new_zap/models/chat/message/message.dart';
 import 'package:new_zap/models/user/user.dart';
 
@@ -44,12 +45,17 @@ abstract class ChatRepositoryBase with Store {
   }
 
   Future sendMessage({
-    required String chatRef,
+    required Chat chat,
     required String messageText,
     required String sendByUserDocumentId,
   }) async {
+    final chatDocRef = chatsColletion.doc(chat.documentId);
+
+    chat = chat.copyWith(lastMessageSent: DateTime.now());
+    await chatDocRef.update(chat.toJson());
+
     final messageRef = chatsColletion
-        .doc(chatRef)
+        .doc(chat.documentId)
         .collection(AppCollections.messagesCollection);
 
     final message = Message(

@@ -50,6 +50,11 @@ class AppTheme {
         color: AppColors.darkWhite,
         fontSize: 25,
       ),
+      labelSmall: TextStyle(
+        color: AppColors.darkWhite,
+        fontWeight: FontWeight.w500,
+        fontSize: 11,
+      ),
     ),
     tabBarTheme: TabBarTheme(
       unselectedLabelColor: AppColors.darkWhite.withOpacity(.6),
@@ -83,9 +88,13 @@ class AppTheme {
         color: AppColors.darkWhite,
         fontSize: 25,
       ),
+      labelSmall: TextStyle(
+        color: AppColors.darkBlue,
+        fontWeight: FontWeight.w500,
+        fontSize: 11,
+      ),
       labelLarge: TextStyle(color: Colors.purple),
       labelMedium: TextStyle(color: Colors.purple),
-      labelSmall: TextStyle(color: Colors.purple),
       displayLarge: TextStyle(color: Colors.purple),
       displayMedium: TextStyle(color: Colors.purple),
       displaySmall: TextStyle(color: Colors.purple),

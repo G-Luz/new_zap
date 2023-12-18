@@ -148,6 +148,7 @@ abstract class ContactsControllerBase with Store {
       blocked: false,
       stDocumentId: currentUserController.currentUser!.documentId,
       ndDocumentId: selectedContactDocumentId,
+      lastMessageSent: DateTime.now(),
       backgroundImageUrl: '',
     );
     final chatRef = await chatsColletion.add(chat.toJson());

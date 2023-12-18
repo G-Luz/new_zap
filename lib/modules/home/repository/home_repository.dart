@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:new_zap/constants/app_collection.dart';
+import 'package:new_zap/models/chat/message/message.dart';
+import 'package:new_zap/models/user/user.dart';
 
 part 'home_repository.g.dart';
 
@@ -13,26 +14,54 @@ abstract class HomeRepositoryBase with Store {
       .doc(AppCollections.appCollection)
       .collection(AppCollections.chatsCollection);
 
-  retrieveAllCurrentUserChats({required String userDocumentId}) async {
-    print('qual o doc id: ${userDocumentId}');
+  final usersColletion = FirebaseFirestore.instance
+      .collection(AppCollections.dummyCollection)
+      .doc(AppCollections.appCollection)
+      .collection(AppCollections.usersCollection);
 
-    final queryResult = await chatsColletion
-        .where('stDocumentId', isEqualTo: userDocumentId)
-        .where('ndDocumentId', isEqualTo: userDocumentId)
-        .get();
-
-    print('eae tem né: ${queryResult.docs.length}');
-
-    final snapshots = chatsColletion.snapshots().map(
+  Stream<Iterable<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      retrieveAllCurrentUserChats({required String userDocumentId}) {
+    return chatsColletion
+        .orderBy(
+          'lastMessageSent',
+          descending: true,
+        )
+        .snapshots()
+        .map(
           (snapshot) => snapshot.docs.where((doc) =>
               doc['stDocumentId'] == userDocumentId ||
               doc['ndDocumentId'] == userDocumentId),
         );
+  }
 
-    final opa = (await snapshots.first).toList();
+  Future<User?> findUserChatByDocumentId({
+    required String userDocumentId,
+  }) async {
+    final queryResult = await usersColletion
+        .where('documentId', isEqualTo: userDocumentId)
+        .limit(1)
+        .get();
 
-    print('PORRA DE SNAP ${(opa.length)}');
+    if (queryResult.docs.isNotEmpty) {
+      return User.fromJson(queryResult.docs.first.data());
+    }
+    return null;
+  }
 
-    // return (await snapshots.first).toList();
+  Future<Message?> findUserMessages({
+    required String chatDocumentId,
+  }) async {
+    final messagesRef = await chatsColletion
+        .doc(chatDocumentId)
+        .collection(AppCollections.messagesCollection);
+
+    final queryResult =
+        await messagesRef.orderBy('sendDate', descending: true).limit(1).get();
+
+    if (queryResult.docs.isNotEmpty) {
+      return Message.fromJson(queryResult.docs.first.data());
+    }
+
+    return null;
   }
 }
