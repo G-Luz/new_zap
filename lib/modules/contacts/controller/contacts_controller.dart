@@ -26,14 +26,36 @@ abstract class ContactsControllerBase with Store {
   ContactsStatus status = ContactsStatus.initial;
 
   @observable
-  bool isSearchContact = false;
+  bool isOpenSearchBar = false;
 
   @observable
   ObservableList<User> contactsList = ObservableList<User>();
 
+  @observable
+  ObservableList<User> filterCttList = ObservableList<User>();
+
   @action
   handleSearchContactBar() {
-    isSearchContact = !isSearchContact;
+    isOpenSearchBar = !isOpenSearchBar;
+    if (filterCttList.isNotEmpty) {
+      filterCttList.clear();
+    }
+  }
+
+  @action
+  searchFilteredContacts(String filter) {
+    filterCttList.clear();
+
+    if (contactsList.isNotEmpty) {
+      for (final ctt in contactsList) {
+        if (ctt.name.toLowerCase().contains(filter)) {}
+
+        if (ctt.name.toLowerCase().contains(filter) ||
+            ctt.email!.toLowerCase().contains(filter)) {
+          filterCttList.add(ctt);
+        }
+      }
+    }
   }
 
   @action

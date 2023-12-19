@@ -75,7 +75,7 @@ class ContactItem extends StatelessWidget {
                   // fontWeight: FontWeight.w700,
                 ),
                 Text(
-                  user.lastEntrance?.toString() ?? 'Login ainda não efetuado.',
+                  user.email!,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],

@@ -41,8 +41,6 @@ class _ChatPageState extends State<ChatPage> {
     final deviceSize = MediaQuery.of(context).size;
     return Observer(
       builder: (context) {
-        print('rebuilda???: ${controller.chat?.toJson()}');
-
         return GestureDetector(
           onTap: () {
             final currentFocus = FocusScope.of(context);

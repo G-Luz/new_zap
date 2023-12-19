@@ -25,19 +25,19 @@ mixin _$ContactsController on ContactsControllerBase, Store {
     });
   }
 
-  late final _$isSearchContactAtom =
-      Atom(name: 'ContactsControllerBase.isSearchContact', context: context);
+  late final _$isOpenSearchBarAtom =
+      Atom(name: 'ContactsControllerBase.isOpenSearchBar', context: context);
 
   @override
-  bool get isSearchContact {
-    _$isSearchContactAtom.reportRead();
-    return super.isSearchContact;
+  bool get isOpenSearchBar {
+    _$isOpenSearchBarAtom.reportRead();
+    return super.isOpenSearchBar;
   }
 
   @override
-  set isSearchContact(bool value) {
-    _$isSearchContactAtom.reportWrite(value, super.isSearchContact, () {
-      super.isSearchContact = value;
+  set isOpenSearchBar(bool value) {
+    _$isOpenSearchBarAtom.reportWrite(value, super.isOpenSearchBar, () {
+      super.isOpenSearchBar = value;
     });
   }
 
@@ -54,6 +54,22 @@ mixin _$ContactsController on ContactsControllerBase, Store {
   set contactsList(ObservableList<User> value) {
     _$contactsListAtom.reportWrite(value, super.contactsList, () {
       super.contactsList = value;
+    });
+  }
+
+  late final _$filterCttListAtom =
+      Atom(name: 'ContactsControllerBase.filterCttList', context: context);
+
+  @override
+  ObservableList<User> get filterCttList {
+    _$filterCttListAtom.reportRead();
+    return super.filterCttList;
+  }
+
+  @override
+  set filterCttList(ObservableList<User> value) {
+    _$filterCttListAtom.reportWrite(value, super.filterCttList, () {
+      super.filterCttList = value;
     });
   }
 
@@ -80,11 +96,23 @@ mixin _$ContactsController on ContactsControllerBase, Store {
   }
 
   @override
+  dynamic searchFilteredContacts(String filter) {
+    final _$actionInfo = _$ContactsControllerBaseActionController.startAction(
+        name: 'ContactsControllerBase.searchFilteredContacts');
+    try {
+      return super.searchFilteredContacts(filter);
+    } finally {
+      _$ContactsControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 status: ${status},
-isSearchContact: ${isSearchContact},
-contactsList: ${contactsList}
+isOpenSearchBar: ${isOpenSearchBar},
+contactsList: ${contactsList},
+filterCttList: ${filterCttList}
     ''';
   }
 }

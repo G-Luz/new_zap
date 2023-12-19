@@ -171,9 +171,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                     messageSnapshot.data;
 
                                                 /// TODO:
-
                                                 /// BLOQUEAR/DEBLOQ CTT
-                                                /// FILTRAR USUARIO
                                                 /// LISTAR CONVERSAS (NAO LIDAS, LIDAS)
                                                 /// TENTAR NOTIFICACAO
 
