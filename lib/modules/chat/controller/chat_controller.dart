@@ -26,6 +26,12 @@ abstract class ChatControllerBase with Store {
   ChatStatus status = ChatStatus.initial;
 
   @observable
+  String backgroundImageUrl = '';
+
+  @observable
+  int backgroundColor = 0;
+
+  @observable
   Chat? chat;
 
   @observable
@@ -40,6 +46,13 @@ abstract class ChatControllerBase with Store {
   @action
   onUpdateChatRef(Chat chat) {
     this.chat = chat;
+    updateBackgroundWallpaper(chat);
+  }
+
+  @action
+  updateBackgroundWallpaper(Chat chat) {
+    backgroundColor = chat.backgroundColor!;
+    backgroundImageUrl = chat.backgroundImageUrl!;
   }
 
   @action

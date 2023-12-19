@@ -25,6 +25,38 @@ mixin _$ChatController on ChatControllerBase, Store {
     });
   }
 
+  late final _$backgroundImageUrlAtom =
+      Atom(name: 'ChatControllerBase.backgroundImageUrl', context: context);
+
+  @override
+  String get backgroundImageUrl {
+    _$backgroundImageUrlAtom.reportRead();
+    return super.backgroundImageUrl;
+  }
+
+  @override
+  set backgroundImageUrl(String value) {
+    _$backgroundImageUrlAtom.reportWrite(value, super.backgroundImageUrl, () {
+      super.backgroundImageUrl = value;
+    });
+  }
+
+  late final _$backgroundColorAtom =
+      Atom(name: 'ChatControllerBase.backgroundColor', context: context);
+
+  @override
+  int get backgroundColor {
+    _$backgroundColorAtom.reportRead();
+    return super.backgroundColor;
+  }
+
+  @override
+  set backgroundColor(int value) {
+    _$backgroundColorAtom.reportWrite(value, super.backgroundColor, () {
+      super.backgroundColor = value;
+    });
+  }
+
   late final _$chatAtom =
       Atom(name: 'ChatControllerBase.chat', context: context);
 
@@ -123,9 +155,22 @@ mixin _$ChatController on ChatControllerBase, Store {
   }
 
   @override
+  dynamic updateBackgroundWallpaper(Chat chat) {
+    final _$actionInfo = _$ChatControllerBaseActionController.startAction(
+        name: 'ChatControllerBase.updateBackgroundWallpaper');
+    try {
+      return super.updateBackgroundWallpaper(chat);
+    } finally {
+      _$ChatControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 status: ${status},
+backgroundImageUrl: ${backgroundImageUrl},
+backgroundColor: ${backgroundColor},
 chat: ${chat},
 recipientUser: ${recipientUser},
 textMessageController: ${textMessageController},

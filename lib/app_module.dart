@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:new_zap/constants/routes.dart';
 import 'package:new_zap/modules/chat/chat_module.dart';
+import 'package:new_zap/modules/chat/sub_modules/custom_chat_wallpaper/custom_chat_wallpaper_module.dart';
 import 'package:new_zap/modules/contacts/contacts_module.dart';
 import 'package:new_zap/modules/home/home_module.dart';
 import 'package:new_zap/modules/internet_image/internet_image_module.dart';
@@ -31,6 +32,10 @@ class AppModule extends Module {
         ModuleRoute(
           Routes.chatModuleRoute,
           module: ChatModule(),
+        ),
+        ModuleRoute(
+          Routes.customChatWallpaper,
+          module: CustomChatWallpaperModule(),
         ),
         ModuleRoute(
           Routes.contactsModuleRoute,

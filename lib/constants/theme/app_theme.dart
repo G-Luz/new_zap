@@ -93,7 +93,7 @@ class AppTheme {
         fontWeight: FontWeight.w500,
         fontSize: 11,
       ),
-      labelLarge: TextStyle(color: Colors.purple),
+      labelLarge: TextStyle(color: Colors.purple),  
       labelMedium: TextStyle(color: Colors.purple),
       displayLarge: TextStyle(color: Colors.purple),
       displayMedium: TextStyle(color: Colors.purple),

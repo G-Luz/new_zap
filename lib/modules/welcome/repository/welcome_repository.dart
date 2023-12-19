@@ -58,8 +58,10 @@ abstract class WelcomeRepositoryBase with Store {
   }
 
   Future<void> createUserDocument(model.User user) async {
-    await firestore
+    final insertResult = await firestore
         .collection(AppCollections.usersCollection)
         .add(user.toJson());
+    user = user.copyWith(documentId: insertResult.id);
+    await insertResult.update(user.toJson());
   }
 }

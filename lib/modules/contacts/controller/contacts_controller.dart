@@ -46,6 +46,8 @@ abstract class ContactsControllerBase with Store {
   Future<Chat?> createChatWithUsers({
     required String selectedContactDocumentId,
   }) async {
+    print('SelectedContact: $selectedContactDocumentId');
+
     final currentUserIsFirstInChat = await chatsColletion
         .where('stDocumentId',
             isEqualTo: currentUserController.currentUser!.documentId)

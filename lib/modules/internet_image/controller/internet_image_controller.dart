@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:mobx/mobx.dart';
 import 'package:new_zap/modules/internet_image/controller/model/internet_image.dart';
 import 'package:new_zap/modules/internet_image/repository/internet_image_repository.dart';
 import 'package:new_zap/utils/debounce.dart';
+import 'package:path_provider/path_provider.dart';
 
 part 'internet_image_controller.g.dart';
 
@@ -33,16 +36,38 @@ abstract class InternetImageControllerBase with Store {
   }
 
   Future<String?> downloadNetworkImage(String? imageUrl) async {
+    final imagesDirectory = await createDownloadedImagesDirectory();
+
     if (imageUrl != null) {
-      var imageId = await ImageDownloader.downloadImage(imageUrl,
-          destination: AndroidDestinationType.custom(directory: 'sample')
-            ..inExternalFilesDir()
-            ..subDirectory("network/internetImage${DateTime.now()}.jpg"));
+      var imageId = await ImageDownloader.downloadImage(
+        imageUrl,
+        destination:
+            AndroidDestinationType.custom(directory: imagesDirectory.path)
+              ..inExternalFilesDir()
+              ..subDirectory(
+                '${DateTime.now().millisecondsSinceEpoch}.jpg',
+              ),
+      );
+
+      print('Downloaded image id: ${imageId}');
       if (imageId == null) {
         return null;
       }
       return await ImageDownloader.findPath(imageId);
     }
     return null;
+  }
+
+  Future<Directory> createDownloadedImagesDirectory() async {
+    final appDirectory = await getApplicationDocumentsDirectory();
+
+    var imagesDirectory =
+        Directory('${appDirectory.path}/network/download/images');
+
+    if (!await imagesDirectory.exists()) {
+      await imagesDirectory.create(recursive: true);
+    }
+
+    return imagesDirectory;
   }
 }

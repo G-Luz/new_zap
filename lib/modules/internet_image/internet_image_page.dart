@@ -21,10 +21,13 @@ class _InternetImagePageState extends State<InternetImagePage> {
     final controller = Modular.get<InternetImageController>();
 
     return Scaffold(
+      backgroundColor: Theme.of(context).brightness == Brightness.dark
+          ? AppColors.darkBlue
+          : AppColors.darkWhite,
       appBar: AppBar(
         backgroundColor: AppColors.darkBlue,
         title: const AppText(
-          text: 'Minhas configurações',
+          text: 'Pesquise por imagens',
           fontSize: 18,
           fontWeight: FontWeight.w600,
         ),
@@ -35,16 +38,6 @@ class _InternetImagePageState extends State<InternetImagePage> {
           ),
           onPressed: () => Modular.to.pop(),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.logout_outlined,
-              color: AppColors.darkWhite,
-            ),
-            highlightColor: Colors.grey.withOpacity(.2),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -58,6 +51,7 @@ class _InternetImagePageState extends State<InternetImagePage> {
                   margin: const EdgeInsets.symmetric(vertical: 30),
                   child: AppTextfield(
                     hint: 'Pesquise por uma imagem',
+                    textColor: Theme.of(context).textTheme.bodySmall!.color,
                     suffixIcon: const Icon(
                       Icons.search,
                     ),
@@ -69,7 +63,8 @@ class _InternetImagePageState extends State<InternetImagePage> {
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 200 / 170,
                       crossAxisSpacing: 40,

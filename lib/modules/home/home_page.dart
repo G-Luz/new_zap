@@ -64,11 +64,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                     Row(
                       children: [
-                        const Icon(
-                          Icons.search_outlined,
-                          color: AppColors.darkWhite,
-                          size: 30,
-                        ),
                         const SizedBox(width: 20),
                         IconButton(
                           icon: const Icon(
@@ -127,9 +122,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     tabBadge: snapshot.data != null
                                         ? snapshot.data!.length.toString()
                                         : ''),
-                                const AppTab(tabTitle: 'Lidas', tabBadge: '2'),
+                                const AppTab(tabTitle: 'Lidas', tabBadge: '0'),
                                 const AppTab(
-                                    tabTitle: 'Não lidas', tabBadge: '8'),
+                                    tabTitle: 'Não lidas', tabBadge: '0'),
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -154,11 +149,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         final chatItem = Chat.fromJson(
                                             chatList[index].data());
 
-                                        // if (index == (chatList.length - 1)) {
-                                        //   print('achei o último: ${index}');
-                                        //   controller.changeToSuccessfulStatus();
-                                        // }
-
                                         return FutureBuilder(
                                           future: controller
                                               .findUserContactChatData(
@@ -182,7 +172,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
                                                 /// TODO:
 
-                                                /// BACKGROUND DO CHAT
                                                 /// BLOQUEAR/DEBLOQ CTT
                                                 /// FILTRAR USUARIO
                                                 /// LISTAR CONVERSAS (NAO LIDAS, LIDAS)

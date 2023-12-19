@@ -16,6 +16,10 @@ class ChatModule extends Module {
     ChildRoute(
       Routes.initialRoute,
       child: (context, args) => const ChatPage(),
-    )
+    ),
+    ChildRoute(
+      Routes.customChatWallpaper,
+      child: (context, args) => const ChatPage(),
+    ),
   ];
 }

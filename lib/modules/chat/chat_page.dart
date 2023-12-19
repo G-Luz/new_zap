@@ -5,6 +5,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:new_zap/constants/app_colors.dart';
 import 'package:new_zap/constants/app_images.dart';
+import 'package:new_zap/constants/routes.dart';
+import 'package:new_zap/models/chat/chat.dart';
 import 'package:new_zap/models/chat/message/message.dart' as model;
 import 'package:new_zap/models/user/user.dart';
 import 'package:new_zap/modules/chat/controller/chat_controller.dart';
@@ -39,6 +41,8 @@ class _ChatPageState extends State<ChatPage> {
     final deviceSize = MediaQuery.of(context).size;
     return Observer(
       builder: (context) {
+        print('rebuilda???: ${controller.chat?.toJson()}');
+
         return GestureDetector(
           onTap: () {
             final currentFocus = FocusScope.of(context);
@@ -91,10 +95,32 @@ class _ChatPageState extends State<ChatPage> {
                   onSelected: (value) {},
                   itemBuilder: (BuildContext context) {
                     return [
-                      PopupMenuItem(child: Text('1')),
-                      PopupMenuItem(child: Text('2')),
-                      PopupMenuItem(child: Text('3')),
-                      PopupMenuItem(child: Text('4')),
+                      PopupMenuItem(
+                        onTap: () async {
+                          Chat? updateChat = await Modular.to.pushNamed(
+                            Routes.customChatWallpaper,
+                            arguments: {
+                              'chat': controller.chat,
+                              'user': controller.recipientUser,
+                            },
+                          );
+
+                          if (updateChat != null) {
+                            controller.onUpdateChatRef(updateChat);
+                          }
+                        },
+                        child: Text(
+                          'Papel de parede',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ),
+                      PopupMenuItem(
+                        onTap: () {},
+                        child: Text(
+                          'Bloquear Contato',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ),
                     ];
                   },
                 ),
@@ -133,7 +159,6 @@ class _ChatPageState extends State<ChatPage> {
                 ],
               ),
             ),
-
             body: Container(
               height: deviceSize.height,
               padding: const EdgeInsets.only(
@@ -143,13 +168,17 @@ class _ChatPageState extends State<ChatPage> {
                 right: 30,
               ),
               decoration: BoxDecoration(
-                color: Theme.of(context).brightness == Brightness.dark
-                    ? AppColors.darkBlue
-                    : AppColors.darkWhite,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                ),
+                color: controller.backgroundColor != 0
+                    ? Color(controller.backgroundColor)
+                    : Theme.of(context).brightness == Brightness.dark
+                        ? AppColors.darkBlue
+                        : AppColors.darkWhite,
+                image: controller.backgroundImageUrl.isNotEmpty
+                    ? DecorationImage(
+                        image: NetworkImage(controller.backgroundImageUrl),
+                        fit: BoxFit.cover,
+                      )
+                    : null,
               ),
               child: StreamBuilder<QuerySnapshot>(
                 stream: controller.messagesStream,

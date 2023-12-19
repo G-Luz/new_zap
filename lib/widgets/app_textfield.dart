@@ -8,6 +8,7 @@ class AppTextfield extends StatelessWidget {
     this.width,
     this.hint,
     this.initialValue,
+    this.textColor,
     this.errorText,
     this.enable = true,
     this.readOnly = false,
@@ -26,6 +27,7 @@ class AppTextfield extends StatelessWidget {
   final double? width;
   final String? hint;
   final String? initialValue;
+  final Color? textColor;
   final String? errorText;
   final bool enable;
   final bool readOnly;
@@ -49,8 +51,9 @@ class AppTextfield extends StatelessWidget {
         keyboardType: keyboardType,
         enabled: enable,
         readOnly: readOnly,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 15,
+          color: textColor,
         ),
         maxLines: maxLines,
         obscureText: obscureText,
